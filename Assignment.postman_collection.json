@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "d471adb2-ab1d-4bc8-adff-c6197414ea6d",
+		"name": "Assignment",
+		"description": "StartFragment\n\n# Assignment module:Write test scenarios using GET, PULL, POST and DELETE\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27993694",
+		"_collection_link": "https://red-moon-614085.postman.co/workspace/June23-AccuratePostmanInterpret~61efdd72-b464-4896-9ba5-a1de02f14ee8/collection/3940222-d471adb2-ab1d-4bc8-adff-c6197414ea6d?action=share&creator=27993694&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Positive Scenarios",
+			"item": [
+				{
+					"name": "Get all assginment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"console.log(jsonData.length);\r",
+									"\r",
+									"pm.test(\"Check if response is JSON\", function () {\r",
+									"    for(i=0;i<jsonData.length;i++){\r",
+									"        pm.expect(jsonData[i]).to.be.an('object');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check response header\", function () {\r",
+									"    pm.response.to.have.header('content-type');\r",
+									"    pm.response.to.be.header('content-type','application/json')\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseurl}}/assignments",
+						"description": "StartFragment\n\nBaseUrl : [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments\n\nResponse Body : \n\n\\[\n\n  {\n\n    \"assignmentDescription\": \"string\",\n\n    \"assignmentId\": 0,\n\n    \"assignmentName\": \"string\",\n\n    \"batchId\": 0,\n\n    \"comments\": \"string\",\n\n    \"createdBy\": \"string\",\n\n    \"dueDate\": \"2023-06-19T21:36:42.434Z\",\n\n    \"graderId\": \"string\",\n\n    \"pathAttachment1\": \"string\",\n\n    \"pathAttachment2\": \"string\",\n\n    \"pathAttachment3\": \"string\",\n\n    \"pathAttachment4\": \"string\",\n\n    \"pathAttachment5\": \"string\"\n\n  } \\]\n\nStatus Code:   200 Ok\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get single assignment by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"console.log(jsonData.length);\r",
+									"\r",
+									"pm.test(\"Check if response is JSON\", function () {\r",
+									"    for(i=0;i<jsonData.length;i++){\r",
+									"        pm.expect(jsonData[i]).to.be.an('object');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check response header\", function () {\r",
+									"    pm.response.to.have.header('content-type');\r",
+									"    pm.response.to.be.header('content-type','application/json')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"properties have valid data type\", function(){\r",
+									"    const res = pm.response.json();\r",
+									"   pm.expect(res[i].assignmentId).to.be.a('number');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/:assignmentId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								":assignmentId"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "assignmentId",
+									"value": "1865"
+								}
+							]
+						},
+						"description": "StartFragment\n\nBaseUrl : [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments/{assignmentId}\n\nResponse Body : \n\n\\[  {\n\n    \"assignmentDescription\": \"string\",\n\n    \"assignmentId\": 0,\n\n    \"assignmentName\": \"string\",\n\n    \"batchId\": 0,\n\n    \"comments\": \"string\",\n\n    \"createdBy\": \"string\",\n\n    \"dueDate\": \"2023-06-19T21:36:42.434Z\",\n\n    \"graderId\": \"string\",\n\n    \"pathAttachment1\": \"string\",\n\n    \"pathAttachment2\": \"string\",\n\n    \"pathAttachment3\": \"string\",\n\n    \"pathAttachment4\": \"string\",\n\n    \"pathAttachment5\": \"string\"   }\n\n\\]\n\nStatus Code:   200 Ok\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "GET a single Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/batch/:batchId/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								":batchId",
+								""
+							],
+							"variable": [
+								{
+									"key": "batchId",
+									"value": "4340"
+								}
+							]
+						},
+						"description": "StartFragment\n\n1. ### GET Assignment for Batch\n    \n\n  \n\nBaseUrl : [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments/batch/{batchID}\n\n  \n\nResponse Body : \n\n\\[  {\n\n    \"assignmentDescription\": \"string\",\n\n    \"assignmentId\": 0,\n\n    \"assignmentName\": \"string\",\n\n    \"batchId\": 0,\n\n    \"comments\": \"string\",\n\n    \"createdBy\": \"string\",\n\n    \"dueDate\": \"2023-06-19T21:36:42.434Z\",\n\n    \"graderId\": \"string\",\n\n    \"pathAttachment1\": \"string\",\n\n    \"pathAttachment2\": \"string\",\n\n    \"pathAttachment3\": \"string\",\n\n    \"pathAttachment4\": \"string\",\n\n    \"pathAttachment5\": \"string\"   }\n\n\\]\n\nStatus Code:   200 Ok  ,\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response is JSON\", function () {\r",
+									"    for(i=0;i<jsonData.length;i++){\r",
+									"        pm.expect(jsonData[i]).to.be.an('object');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check response header\", function () {\r",
+									"    pm.response.to.have.header('content-type');\r",
+									"    pm.response.to.be.header('content-type','application/json')\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"const assignmentName = pm.variables.get(\"assignmentName\");\r",
+									"var snum = \"S\" + pm.variables.replaceIn('{{$randomInt}}');\r",
+									"\r",
+									"pm.globals.set(\"assignmentName_env\", `${assignmentName}-${snum}`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"assignmentDescription\": \"{{assignmentDescription}}\",\r\n\"assignmentId\": \"{{assignmentId}}\" ,\r\n\"assignmentName\": \"{{assignmentName_env}}\",\r\n\"batchId\": \"{{batchId}}\",\r\n\"comments\": \"{{comments}}\",\r\n\"createdBy\": \"{{createdBy}}\",\r\n\"dueDate\": \"{{dueDate}}\",\r\n\"graderId\": \"{{graderId}}\",\r\n\"pathAttachment1\": \"{{pathAttachment1}}\",\r\n\"pathAttachment2\":\"{{pathAttachment2}}\",\r\n\"pathAttachment3\": \"{{pathAttachment3}}\",\r\n\"pathAttachment4\": \"{{pathAttachment4}}\",\r\n\"pathAttachment5\": \"{{pathAttachment5}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseurl}}/assignments",
+						"description": "Post request to create an assignment.\n\nStartFragment\n\n  \n\nMandatory : \n\nAssignment Name , \n\nCreatedBy  - Should be Admin / Staff , Only active users can create assignment\n\nGrader Id  can be Admin / Staff / Student\n\nBatch ID,\n\nDue Date   in Assignments should be entered in YYYY-MM-DD HH:MI:SS\n\nAssignment Description\n\n Assignments created have Due_Date ,this date is associated with assignment submissions.\n\nAssignments are attached as a path in json as pathAttachment1,pathAttachment2, pathAttachment3,pathAttachment4, pathAttachment5\n\n  \n\nAutogenerated : Assignment ID in integer\n\n  \n\nBasUrl : [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments\n\n  \n  \n\nRequest Body:\n\n{\n\n  \"assignmentDescription\": \"string\",\n\n  \"assignmentId\": 0,\n\n  \"assignmentName\": \"string\",\n\n  \"batchId\": 0,\n\n  \"comments\": \"string\",\n\n  \"createdBy\": \"string\",\n\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\n\n  \"graderId\": \"string\",\n\n  \"pathAttachment1\": \"string\",\n\n  \"pathAttachment2\": \"string\",\n\n  \"pathAttachment3\": \"string\",\n\n  \"pathAttachment4\": \"string\",\n\n  \"pathAttachment5\": \"string\" }\n\n  \n\nResponse Body : \n\n{\n\n  \"assignmentDescription\": \"string\",\n\n  \"assignmentId\": 0,\n\n  \"assignmentName\": \"string\",\n\n  \"batchId\": 0,\n\n  \"comments\": \"string\",\n\n  \"createdBy\": \"string\",\n\n  \"dueDate\": \"2023-06-19T22:18:43.750Z\",\n\n  \"graderId\": \"string\",\n\n  \"pathAttachment1\": \"string\",\n\n  \"pathAttachment2\": \"string\",\n\n  \"pathAttachment3\": \"string\",\n\n  \"pathAttachment4\": \"string\",\n\n  \"pathAttachment5\": \"string\"\n\n}\n\nStatus Code : \n\nSuccess - 201 Created\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response is JSON\", function () {\r",
+									"    for(i=0;i<jsonData.length;i++){\r",
+									"        pm.expect(jsonData[i]).to.be.an('object');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check response header\", function () {\r",
+									"    pm.response.to.have.header('content-type');\r",
+									"    pm.response.to.be.header('content-type','application/json')\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"assignmentId\":1865,\"assignmentName\":\"Jun23-LightningAPIHackers-SFDC--SQL-13740\",\"assignmentDescription\":\"SQL Practicing\",\"comments\":null,\"dueDate\":\"2023-06-19T22:02:28.140+00:00\",\"pathAttachment1\":\"Filepath1\",\"pathAttachment2\":\"Filepath2\",\"pathAttachment3\":\"Filepath3\",\"pathAttachment4\":\"Filepath4\",\"pathAttachment5\":\"Filepath5\",\"batchId\":4340,\"createdBy\":\"U22\",\"graderId\":\"U22\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments/:assignmentId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								":assignmentId"
+							],
+							"variable": [
+								{
+									"key": "assignmentId",
+									"value": "1865"
+								}
+							]
+						},
+						"description": "http PUT request to update an assignment.\n\nStartFragment\n\nMandatory : \n\nAssignment Name should be unique , \n\nCreatedBy  - Should be Admin / Staff , Only active users can create assignment\n\nGrader Id  can be Admin / Staff / Student\n\nBatch ID,\n\nDue Date   in Assignments should be entered in YYYY-MM-DD HH:MI:SS\n\nAssignment Description\n\n  \n\nBaseUrl: [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments/{assignmentID}\n\n  \n\nRequest Body:\n\n{   \"assignmentDescription\": \"string\",\n\n  \"assignmentId\": 0,\n\n  \"assignmentName\": \"string\",\n\n  \"batchId\": 0,\n\n  \"comments\": \"string\",\n\n  \"createdBy\": \"string\",\n\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\n\n  \"graderId\": \"string\",\n\n  \"pathAttachment1\": \"string\",\n\n  \"pathAttachment2\": \"string\",\n\n  \"pathAttachment3\": \"string\",\n\n  \"pathAttachment4\": \"string\",\n\n  \"pathAttachment5\": \"string\"   }\n\nResponse Body : \n\n{\n\n  \"assignmentDescription\": \"string\",\n\n  \"assignmentId\": 0,\n\n  \"assignmentName\": \"string\",\n\n  \"batchId\": 0,\n\n  \"comments\": \"string\",\n\n  \"createdBy\": \"string\",\n\n  \"dueDate\": \"2023-06-19T22:18:43.750Z\",\n\n  \"graderId\": \"string\",\n\n  \"pathAttachment1\": \"string\",\n\n  \"pathAttachment2\": \"string\",\n\n  \"pathAttachment3\": \"string\",\n\n  \"pathAttachment4\": \"string\",\n\n  \"pathAttachment5\": \"string\"\n\n}\n\nStatus Code : \n\nSuccess - 200 ok\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if response is JSON\", function () {\r",
+									"    for(i=0;i<jsonData.length;i++){\r",
+									"        pm.expect(jsonData[i]).to.be.an('object');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check response header\", function () {\r",
+									"    pm.response.to.have.header('content-type');\r",
+									"    pm.response.to.be.header('content-type','application/json')\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseurl}}//assignments/{{assignmentId}}",
+						"description": "StartFragment\n\nhttp DELETE request to delete an assignment using assignment ID.\n\nBaseURl : [https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms](https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms)\n\nEndpoint : /assignments/{assignmentID}\n\nStatus Code:\n\n200 Ok with message and boolean success details\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n**This folder holds positive test scenarios for Assignment Module.**\n\nEndFragment"
+		},
+		{
+			"name": "Negative Scenarios",
+			"item": [
+				{
+					"name": "Not getting assignments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseurl}}/assignment",
+						"description": "StartFragment\n\nRequest to get all submission details with a invalid endpoint.\n\nStatus Code : 404 not Found with message and boolean success details.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Getting assignment with Invalid id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/:assignmentId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								":assignmentId"
+							],
+							"variable": [
+								{
+									"key": "assignmentId",
+									"value": "567"
+								}
+							]
+						},
+						"description": "StartFragment\n\nRequest to get an assignment details with a invalid user assignment ID.\n\nStatus Code : 404 not Found with message and boolean success details.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Getting batch with invalid Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/batch/:batchId/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								":batchId",
+								""
+							],
+							"variable": [
+								{
+									"key": "batchId",
+									"value": "22"
+								}
+							]
+						},
+						"description": "StartFragment\n\nRequest to get a batch with invalid batch Id\n\nStatus Code:   404 Not Found with message and boolean success details \n\nNote : If batch Id is invalid - Batch id not found, If batch id present and  no assignment  - then Assignment not found\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Create incorrect assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"string\",\r\n  \"assignmentId\": ,\r\n  \"assignmentName\": \"string\",\r\n  \"batchId\": ,\r\n  \"comments\": \"string\",\r\n  \"createdBy\": \"string\",\r\n  \"dueDate\": \"2023-06-26T22:02:28.140Z\",\r\n  \"graderId\": \"string\",\r\n  \"pathAttachment1\": \"string\",\r\n  \"pathAttachment2\": \"string\",\r\n  \"pathAttachment3\": \"string\",\r\n  \"pathAttachment4\": \"string\",\r\n  \"pathAttachment5\": \"string\" }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseurl}}/assignments",
+						"description": "StartFragment\n\nRequest to create an assignment with missing mandatory field or trying to create assignment that has been created already.\n\nStatus Code : \n\n400 Bad Request with message and boolean success details - for missing field\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/:{{InvalidAssignmentId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								":{{InvalidAssignmentId}}"
+							],
+							"variable": [
+								{
+									"key": "{{InvalidAssignmentId}}",
+									"value": null
+								}
+							]
+						},
+						"description": "StartFragment\n\nPUT request to update an assignment with invalid assignment ID, or trying to update an assignment with missing fields.\n\nStatus Code : \n\n400 Bad Request with message and boolean success details - for missing field\n\n404 Not Found - for invalid assignment ID.\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/:{{InvalidAssignmentId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								":{{InvalidAssignmentId}}"
+							],
+							"variable": [
+								{
+									"key": "{{InvalidAssignmentId}}",
+									"value": "000"
+								}
+							]
+						},
+						"description": "StartFragment\n\nDELETE request to delete an assignment with invalid assignment ID.\n\nStatus Code:\n\n404 Not Found with message and boolean success details\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n**This folder holds Negative test scenarios for Assignment Module.**\n\nEndFragment"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "{{baseUrl}}",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
